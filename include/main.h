@@ -1,5 +1,6 @@
 #include "vex.h"
 #include "robot-config.h"
+#include "vision-config.h"
 #include <cmath>
 
 using namespace vex;
@@ -27,6 +28,10 @@ void TurnLeft(float angle, int speed);
 void TurnRight(float angle, int speed);
 
 void routine1();
+
+void readValues();
+
+void followObject();
 // Main will set up the competition functions and callbacks.
 //
 int main();
