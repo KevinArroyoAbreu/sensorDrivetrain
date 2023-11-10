@@ -5,12 +5,13 @@ using namespace vex;
 using signature = vision::signature;
 using code = vision::code;
 
+/*vex-vision-config:begin*/
 vex::vision::signature BLUE_BALL = vex::vision::signature (1, -3373, -1, -1688, 761, 6121, 3442, 0.9, 0);
-vex::vision::signature SIG_2 = vex::vision::signature (2, 0, 0, 0, 0, 0, 0, 2.5, 0);
-vex::vision::signature SIG_3 = vex::vision::signature (3, 0, 0, 0, 0, 0, 0, 2.5, 0);
+vex::vision::signature DISC = vex::vision::signature (2, 175, 1149, 662, -5815, -4761, -5288, 2.1, 0);
+vex::vision::signature ORANGE_CUBE = vex::vision::signature (3, 4609, 8961, 6786, -4609, -2099, -3354, 2.4, 0);
 vex::vision::signature SIG_4 = vex::vision::signature (4, 0, 0, 0, 0, 0, 0, 2.5, 0);
 vex::vision::signature SIG_5 = vex::vision::signature (5, 0, 0, 0, 0, 0, 0, 2.5, 0);
 vex::vision::signature SIG_6 = vex::vision::signature (6, 0, 0, 0, 0, 0, 0, 2.5, 0);
 vex::vision::signature SIG_7 = vex::vision::signature (7, 0, 0, 0, 0, 0, 0, 2.5, 0);
-vex::vision Vision = vex::vision (vex::PORT5, 150, BLUE_BALL, SIG_2, SIG_3, SIG_4, SIG_5, SIG_6, SIG_7);
+vex::vision Vision = vex::vision (vex::PORT5, 107, BLUE_BALL, DISC, ORANGE_CUBE, SIG_4, SIG_5, SIG_6, SIG_7);
 /*vex-vision-config:end*/

@@ -3,8 +3,8 @@
 using namespace vex;
 
 extern vex::vision::signature BLUE_BALL;
-extern vex::vision::signature SIG_2;
-extern vex::vision::signature SIG_3;
+extern vex::vision::signature DISC;
+extern vex::vision::signature ORANGE_CUBE;
 extern vex::vision::signature SIG_4;
 extern vex::vision::signature SIG_5;
 extern vex::vision::signature SIG_6;

@@ -79,7 +79,7 @@ void routine1(){
 
 void readValues(){
   while(1){
-   Vision.takeSnapshot(BLUE_BALL);
+   Vision.takeSnapshot(ORANGE_CUBE);
 
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Width:");
@@ -93,13 +93,13 @@ void readValues(){
     Brain.Screen.print("centerX:");
     Brain.Screen.print(Vision.objects[0].centerX);
 
-    vex::wait(20, msec);
+    vex::wait(100, msec);
   }
   
 }
 void followObject(){
   //Vision.setBrightness(100);
-   Vision.takeSnapshot(BLUE_BALL);
+   Vision.takeSnapshot(ORANGE_CUBE);
    // int largest = Vision.largestObject(vex::vision::object::centerX);
    // Brain.Screen.print("Hola");
    //Brain.Screen.clearLine();
@@ -109,38 +109,53 @@ void followObject(){
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print(Vision.objects[0].width);
   ////////////////////////
-   int targetWidth = 120;
+   int targetWidth = 160;
    int driveV = 40;
    int driveAlignV = 60;
   //height 2-212
   //width 2-316
-  while(Vision.objects[0].width < targetWidth){
-    Vision.takeSnapshot(BLUE_BALL);
+  while(Vision.objects[0].width < targetWidth && 150 < Vision.objects[0].centerX < 160){
+    Vision.takeSnapshot(ORANGE_CUBE);
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print(Vision.objects[0].width);
 
     Brain.Screen.setCursor(2, 1);
     Brain.Screen.print(Vision.objects[0].centerX);
 
-    if(Vision.objects[0].centerX < 158){//object to the left
+    if(Vision.objects[0].width < targetWidth){
+     if(Vision.objects[0].centerX < 150){//object to the left
       //Drive-turnLeftwards
       leftDrive.setVelocity(driveV, pct);
       rightDrive.setVelocity(driveAlignV, pct);
       leftDrive.spin(fwd);
       rightDrive.spin(fwd);
 
-    }
-    else if(Vision.objects[0].centerX > 158){//object to the right
+     }
+     else if(Vision.objects[0].centerX > 160){//object to the right
       //Drive-turnRighwards
       leftDrive.setVelocity(driveAlignV, pct);
       rightDrive.setVelocity(driveV, pct);
       leftDrive.spin(fwd);
       rightDrive.spin(fwd);
-    }
-    else{
+     }
+     else if(150 < Vision.objects[0].centerX < 160){
       //driveFwd
       robotDrive.setDriveVelocity(driveV, pct);
       robotDrive.drive(fwd);
+     }
+    }
+    else if(Vision.objects[0].width >= targetWidth){
+      if(Vision.objects[0].centerX < 150){//object to the left
+      
+      rightDrive.setVelocity(driveAlignV, pct);
+      rightDrive.spin(fwd);
+
+      }
+      else if(Vision.objects[0].centerX > 160){//object to the right
+      //Drive-turnRighwards
+      leftDrive.setVelocity(driveAlignV, pct);
+      leftDrive.spin(fwd);
+      }
     }
     vex::wait(20, msec);
    } 
@@ -200,8 +215,9 @@ int main()
 
   while(1){
   //select function to run:
-  //followObject();
-  readValues();
+  vex::wait(2000, msec);
+  followObject();
+ // readValues();
   vex::wait(20, msec);
   }
   //////////////////////////////////////////////////////////////////////////////////////
