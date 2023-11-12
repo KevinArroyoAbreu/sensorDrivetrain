@@ -98,71 +98,49 @@ void readValues(){
   
 }
 void followObject(){
-  //Vision.setBrightness(100);
-   Vision.takeSnapshot(ORANGE_CUBE);
-   // int largest = Vision.largestObject(vex::vision::object::centerX);
-   // Brain.Screen.print("Hola");
-   //Brain.Screen.clearLine();
-   //int Vision_objectIndex = 0;
-   //int cX = Vision.objects[Vision_objectIndex].centerX; //0 - 315
-  //Brain.Screen.print(cX);
-    Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print(Vision.objects[0].width);
-  ////////////////////////
+
+    Vision.setBrightness(150);
+    Vision.takeSnapshot(ORANGE_CUBE);
+   // Brain.Screen.setCursor(1, 1);
+   // Brain.Screen.print(Vision.objects[0].width);
+  //////////////////////////////////////////////
    int targetWidth = 160;
    int driveV = 40;
    int driveAlignV = 60;
   //height 2-212
   //width 2-316
-  while(Vision.objects[0].width < targetWidth && 150 < Vision.objects[0].centerX < 160){
+  while(Vision.objects[0].width < targetWidth){
     Vision.takeSnapshot(ORANGE_CUBE);
-    Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print(Vision.objects[0].width);
+   // Brain.Screen.setCursor(1, 1);
+   // Brain.Screen.print(Vision.objects[0].width);
 
-    Brain.Screen.setCursor(2, 1);
-    Brain.Screen.print(Vision.objects[0].centerX);
-
-    if(Vision.objects[0].width < targetWidth){
-     if(Vision.objects[0].centerX < 150){//object to the left
+   // Brain.Screen.setCursor(2, 1);
+   // Brain.Screen.print(Vision.objects[0].centerX);
+    if(Vision.objects[0].centerX < 150){//object to the left
       //Drive-turnLeftwards
       leftDrive.setVelocity(driveV, pct);
       rightDrive.setVelocity(driveAlignV, pct);
       leftDrive.spin(fwd);
       rightDrive.spin(fwd);
 
-     }
-     else if(Vision.objects[0].centerX > 160){//object to the right
+    }
+    else if(Vision.objects[0].centerX > 160){//object to the right
       //Drive-turnRighwards
       leftDrive.setVelocity(driveAlignV, pct);
       rightDrive.setVelocity(driveV, pct);
       leftDrive.spin(fwd);
       rightDrive.spin(fwd);
-     }
-     else if(150 < Vision.objects[0].centerX < 160){
+    }
+    else{
       //driveFwd
       robotDrive.setDriveVelocity(driveV, pct);
       robotDrive.drive(fwd);
-     }
     }
-    else if(Vision.objects[0].width >= targetWidth){
-      if(Vision.objects[0].centerX < 150){//object to the left
-      
-      rightDrive.setVelocity(driveAlignV, pct);
-      rightDrive.spin(fwd);
-
-      }
-      else if(Vision.objects[0].centerX > 160){//object to the right
-      //Drive-turnRighwards
-      leftDrive.setVelocity(driveAlignV, pct);
-      leftDrive.spin(fwd);
-      }
-    }
-    vex::wait(20, msec);
-   } 
+  } 
+   vex::wait(20, msec);
    robotDrive.stop();
-   /////////////////////////////
-  vex::wait(20, msec);
-}
+} 
+
 
 
 void autonomous(void){
@@ -215,7 +193,7 @@ int main()
 
   while(1){
   //select function to run:
-  vex::wait(2000, msec);
+  vex::wait(500, msec);
   followObject();
  // readValues();
   vex::wait(20, msec);
