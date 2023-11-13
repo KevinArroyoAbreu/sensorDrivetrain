@@ -105,10 +105,11 @@ void followObject(){
    // Brain.Screen.print(Vision.objects[0].width);
   //////////////////////////////////////////////
    int targetWidth = 160;
-   int driveV = 40;
-   int driveAlignV = 60;
+   int driveV = 30;
+   int driveAlignV = 50;
   //height 2-212
   //width 2-316
+  vex::wait(1000, msec);
   while(Vision.objects[0].width < targetWidth){
     Vision.takeSnapshot(ORANGE_CUBE);
    // Brain.Screen.setCursor(1, 1);
@@ -116,6 +117,11 @@ void followObject(){
 
    // Brain.Screen.setCursor(2, 1);
    // Brain.Screen.print(Vision.objects[0].centerX);
+    if(Vision.objectCount = 0){
+      robotDrive.setDriveVelocity(driveV, pct);
+      robotDrive.drive(fwd);
+    }
+    
     if(Vision.objects[0].centerX < 150){//object to the left
       //Drive-turnLeftwards
       leftDrive.setVelocity(driveV, pct);
@@ -193,7 +199,6 @@ int main()
 
   while(1){
   //select function to run:
-  vex::wait(500, msec);
   followObject();
  // readValues();
   vex::wait(20, msec);
